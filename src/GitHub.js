@@ -1,15 +1,16 @@
-import { useFetch } from "./useFetch";
+import Fetch from "./Fetch";
+import UserRepositories from "./UserRepositories";
 
-// eslint-disable-next-line react/prop-types
 export default function GitHubUser({ login }) {
-  const { loading, data, error } = useFetch(
-    `https://api.github.com/users/${login}`
+  return (
+    <Fetch
+      uri={`https://api.github.com/users/${login}`}
+      renderSuccess={UserDetails}
+    />
   );
+}
 
-  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
-  if (loading) return <h1>Loading...</h1>;
-  if (!data) return null;
-
+function UserDetails({ data }) {
   return (
     <div className="githubUser">
       <img src={data.avatar_url} alt={data.login} style={{ width: 200 }} />
@@ -18,6 +19,10 @@ export default function GitHubUser({ login }) {
         {data.name && <p>{data.name}</p>}
         {data.location && <p>{data.name}</p>}
       </div>
+      <UserRepositories
+        login={data.login}
+        onSelect={(repoName) => console.log(`${repoName} selected`)}
+      />
     </div>
   );
 }
