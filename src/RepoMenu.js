@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useIterator } from "./hooks/hooks";
+import { useEffect, useState } from "react";
+import { useIterator } from "./hooks";
 import RepositoryReadme from "./RepositoryReadme";
 
 export function RepoMenu({ repositories, login, onSelect = (f) => f }) {
@@ -21,3 +21,4 @@ export function RepoMenu({ repositories, login, onSelect = (f) => f }) {
     </>
   );
 }
+
