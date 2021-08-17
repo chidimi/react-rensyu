@@ -2,6 +2,9 @@ import { FaStar } from 'react-icons/fa';
 
 export default function Star({ selected = false }) {
   return (
-    <FaStar color={selected ? "red" : "grey" } id="star" />
+    <>
+      <h1>Great Star</h1>
+      <FaStar color={selected ? "red" : "grey" } id="star" />
+    </>
   );
 }
