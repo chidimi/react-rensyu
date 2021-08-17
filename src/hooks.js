@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo, useEffect } from "react";
+import { useCallback, useState, useMemo, useEffect, useRef } from "react";
 
 export function useFetch(uri) {
   const [data, setData] = useState();
@@ -46,3 +46,12 @@ export const useInput = initialValue => {
     () => setValue(initialValue)
   ];
 };
+
+export function useMountedRef() {
+  const mounted = useRef(false);
+  useEffect(() => {
+    mounted.current = true;
+    return () => (mounted.current = false)
+  })
+  return mounted
+}
